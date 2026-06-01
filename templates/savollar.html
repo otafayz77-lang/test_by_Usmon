@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Savollar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 p-6">
+    <div class="max-w-3xl mx-auto">
+      <div>
+        <h1
+          class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
+        >
+          Imtihon tizimi
+        </h1>
+
+        <!-- Savol soni -->
+        <p class="text-gray-500 mt-2 text-lg font-medium">
+          Jami savollar: {{ savollar|length }}
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form method="POST" action="{% url 'natija-view' natija_id %}">
+        {% csrf_token %}
+
+        <!-- Savollar -->
+        {% for savol in savollar %}
+        <div class="mt-10 mb-10">
+          <!-- Savol header -->
+          <div class="flex items-center justify-between mb-6">
+            <p class="text-gray-500 text-lg font-medium">
+              Savol {{ forloop.counter }} / {{ savollar|length }}
+            </p>
+          </div>
+
+          <!-- Savol -->
+          <div
+            class="bg-gradient-to-br from-blue-50 to-purple-50 border border-purple-100 rounded-3xl p-8 mb-8"
+          >
+            <p class="text-sm text-purple-600 font-semibold mb-3">
+              📚 {{ savol.kurs.name }}
+            </p>
+
+            <h2 class="text-2xl font-bold text-gray-800 leading-relaxed">
+              {{ savol.savol }}
+            </h2>
+          </div>
+
+          <!-- Variantlar -->
+          <div class="space-y-5">
+            <!-- A -->
+            <label
+              class="option-card flex items-center gap-5 border-2 border-gray-200 rounded-2xl p-5 cursor-pointer bg-white hover:border-purple-300 transition"
+            >
+              <input
+                type="radio"
+                name="answer_{{ savol.id }}"
+                value="A"
+                class="w-6 h-6 accent-purple-600"
+                required
+              />
+
+              <div
+                class="w-12 h-12 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-lg"
+              >
+                A
+              </div>
+
+              <p class="text-lg font-medium text-gray-700">
+                {{ savol.javob_a }}
+              </p>
+            </label>
+
+            <!-- B -->
+            <label
+              class="option-card flex items-center gap-5 border-2 border-gray-200 rounded-2xl p-5 cursor-pointer bg-white hover:border-purple-300 transition"
+            >
+              <input
+                type="radio"
+                name="answer_{{ savol.id }}"
+                value="B"
+                class="w-6 h-6 accent-purple-600"
+              />
+
+              <div
+                class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-lg"
+              >
+                B
+              </div>
+
+              <p class="text-lg font-medium text-gray-700">
+                {{ savol.javob_b }}
+              </p>
+            </label>
+
+            <!-- C -->
+            <label
+              class="option-card flex items-center gap-5 border-2 border-gray-200 rounded-2xl p-5 cursor-pointer bg-white hover:border-purple-300 transition"
+            >
+              <input
+                type="radio"
+                name="answer_{{ savol.id }}"
+                value="C"
+                class="w-6 h-6 accent-purple-600"
+              />
+
+              <div
+                class="w-12 h-12 rounded-xl bg-pink-100 text-pink-700 flex items-center justify-center font-bold text-lg"
+              >
+                C
+              </div>
+
+              <p class="text-lg font-medium text-gray-700">
+                {{ savol.javob_c }}
+              </p>
+            </label>
+
+            <!-- D -->
+            <label
+              class="option-card flex items-center gap-5 border-2 border-gray-200 rounded-2xl p-5 cursor-pointer bg-white hover:border-purple-300 transition"
+            >
+              <input
+                type="radio"
+                name="answer_{{ savol.id }}"
+                value="D"
+                class="w-6 h-6 accent-purple-600"
+              />
+
+              <div
+                class="w-12 h-12 rounded-xl bg-green-100 text-green-700 flex items-center justify-center font-bold text-lg"
+              >
+                D
+              </div>
+
+              <p class="text-lg font-medium text-gray-700">
+                {{ savol.javob_d }}
+              </p>
+            </label>
+          </div>
+        </div>
+        {% endfor %}
+
+        <!-- Buttons -->
+        <div class="flex gap-4 mt-10 pb-10">
+          <button
+            type="submit"
+            class="flex-1 py-4 rounded-2xl text-white font-semibold shadow-lg bg-gradient-to-r from-purple-600 to-blue-600 hover:shadow-2xl transition"
+          >
+            ✓ Tugatish
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

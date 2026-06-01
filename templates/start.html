@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .card-shadow {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      }
+      .input-focus {
+        transition: all 0.3s ease;
+      }
+      .input-focus:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        border-color: #667eea;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        transition: all 0.3s ease;
+      }
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+      }
+      .checkbox-custom {
+        accent-color: #667eea;
+      }
+      .info-card {
+        transition: all 0.3s ease;
+      }
+      .info-card:hover {
+        transform: translateY(-2px);
+      }
+    </style>
+    <title>Imthon tizimi</title>
+  </head>
+  <body class="gradient-bg min-h-screen flex items-center justify-center p-4">
+    <!-- Background Blur -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div
+        class="absolute top-0 right-0 w-96 h-96 bg-blue-400 opacity-10 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute bottom-0 left-0 w-96 h-96 bg-purple-400 opacity-10 rounded-full blur-3xl"
+      ></div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-md">
+      <!-- Main Card -->
+      <div class="card-shadow bg-white rounded-3xl p-12 backdrop-blur-sm">
+        <!-- Header -->
+        <div class="text-center mb-10">
+          <div class="inline-block mb-4">
+            <div
+              class="bg-gradient-to-br from-purple-100 to-blue-100 p-4 rounded-2xl"
+            >
+              <svg
+                class="w-8 h-8 text-purple-600"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M10.5 1.5H3.75A2.25 2.25 0 001.5 3.75v12.5A2.25 2.25 0 003.75 18.5h12.5a2.25 2.25 0 002.25-2.25V9.5"
+                />
+                <path d="M6 10h8M6 14h4" />
+              </svg>
+            </div>
+          </div>
+          <h1
+            class="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2"
+          >
+            Imthon tizimi
+          </h1>
+          <p class="text-gray-500 text-sm">
+            Testni boshlash uchun ma'lumotlarni kiriting
+          </p>
+        </div>
+
+        <!-- Info Section -->
+        <div
+          class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 mb-8 border border-purple-100"
+        >
+          <div class="space-y-4">
+            <div
+              class="flex items-center justify-between p-3 bg-white rounded-xl"
+            >
+              <span class="text-sm font-medium text-gray-600">📚 Kurs</span>
+              <span class="text-lg font-bold text-purple-600">{{ kurs }}</span>
+            </div>
+            <div
+              class="flex items-center justify-between p-3 bg-white rounded-xl"
+            >
+              <span class="text-sm font-medium text-gray-600">👥 Guruh</span>
+              <span class="text-lg font-bold text-purple-600">{{ guruh }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <form
+          method="POST"
+          action="{% url 'savollar-view' %}"
+          class="space-y-6"
+        >
+          {% csrf_token %}
+
+          <!-- First Name -->
+          <div>
+            <label
+              for="first_name"
+              class="block text-sm font-semibold text-gray-700 mb-3"
+            >
+              ✏️ Ism
+            </label>
+            <input
+              type="text"
+              id="first_name"
+              name="first_name"
+              placeholder="Ismingizni kiriting"
+              required
+              class="input-focus w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none bg-gray-50"
+            />
+          </div>
+
+          <!-- Last Name -->
+          <div>
+            <label
+              for="last_name"
+              class="block text-sm font-semibold text-gray-700 mb-3"
+            >
+              👤 Familyasi
+            </label>
+            <input
+              type="text"
+              id="last_name"
+              name="last_name"
+              placeholder="Familyangizni kiriting"
+              required
+              class="input-focus w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none bg-gray-50"
+            />
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex gap-3 pt-4">
+            <button
+              type="button"
+              onclick="history.back()"
+              class="flex-1 px-4 py-4 bg-gray-100 text-gray-700 font-semibold rounded-xl hover:bg-gray-200 transition border border-gray-200"
+            >
+              ← Orqaga
+            </button>
+            <button
+              type="submit"
+              class="btn-primary flex-1 px-4 py-4 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl outline-none"
+            >
+              Imthonni boshlash
+            </button>
+          </div>
+
+          <!-- Instructions Checkboxes -->
+          <div class="border-t-2 border-gray-100 pt-8">
+            <h3 class="text-sm font-bold text-gray-700 mb-4">
+              Shartlarni o'qiyib, tasdiqlang
+            </h3>
+            <div class="space-y-4">
+              <label class="flex items-start cursor-pointer group">
+                <input
+                  type="checkbox"
+                  name="instruction1"
+                  class="checkbox-custom w-5 h-5 mt-1 rounded flex-shrink-0"
+                />
+                <span
+                  class="ml-3 text-sm text-gray-600 group-hover:text-gray-800"
+                >
+                  Imtihon kodini o'zlashtirishga amal qilaman va testni faqat
+                  kod bilan boshlaman
+                </span>
+              </label>
+
+              <label class="flex items-start cursor-pointer group">
+                <input
+                  type="checkbox"
+                  name="instruction2"
+                  class="checkbox-custom w-5 h-5 mt-1 rounded flex-shrink-0"
+                />
+                <span
+                  class="ml-3 text-sm text-gray-600 group-hover:text-gray-800"
+                >
+                  Imtihon paytida vaqt bitguncha testni uzib chiqmayman, mazmun
+                  o'zgartirilmaydi
+                </span>
+              </label>
+
+              <label class="flex items-start cursor-pointer group">
+                <input
+                  type="checkbox"
+                  name="instruction3"
+                  class="checkbox-custom w-5 h-5 mt-1 rounded flex-shrink-0"
+                />
+                <span
+                  class="ml-3 text-sm text-gray-600 group-hover:text-gray-800"
+                >
+                  Bitta kod faqat bir marta imtihonni boshlash uchun ishlatiladi
+                </span>
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Footer -->
+      <p class="text-center text-white text-xs mt-8 opacity-75">
+        © 2026 Imthon Tizimi. Barcha huquqlar himoyalangan.
+      </p>
+    </div>
+  </body>
+</html>
