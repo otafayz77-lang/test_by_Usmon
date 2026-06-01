@@ -9,8 +9,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-7^siuca8y@16r&=k40#a%
 
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = [*]
-
+ALLOWED_HOSTS = ['test-llpe.onrender.com', 'localhost', '127.0.0.1']
 INSTALLED_APPS = [
     'jazzmin',
     'django.contrib.admin',
