@@ -27,7 +27,6 @@ git push -u origin main
 3. **"Web Service"** tanlang
 4. GitHub/GitLab repositoriyasini ulang
 5. Quyidagi sozlamalarni qilishni ta'minlang:
-
    - **Name:** test-app (yoki boshqa nom)
    - **Environment:** Python 3
    - **Build Command:** `pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate`
